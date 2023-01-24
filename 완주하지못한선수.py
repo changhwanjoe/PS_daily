@@ -4,12 +4,21 @@
 def solution(participant, completion):
     d = {}
     for x in participant:
-        d[x] = d.get(x,0) + 1 # d 딕셔너리 안에 x 가 있으면 value 값을, 없으면 0 뱉음
+        d[x] = d.get(x,0) + 1 # d.get(x,0): return value, or 0 if x not in d's keys 
     for x in completion:
         d[x] -= 1 
-    answer_ = [k for k,v in d.items() if v >0 ] 
-    answer = answer_[0]
+    #did not finish
+    dnf = [k for k,v in d.items() if v >0 ] # d.items(): return key, value
+    answer = dnf[0]
     return answer
+
+def sol2(participant, completion): # not optimzed answer
+    participant.sort()
+    completion.sort()
+    for i in range(len(completion)):
+        if participant[i] != completion[i]:
+            return participant[i]
+    return participant[len(participant)-1]
 
 if __name__== "__main__":
     participant = ["leo", "kiki", "eden"]
