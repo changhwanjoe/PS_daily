@@ -1,3 +1,4 @@
+# 자료구조  &  default dict
 from collections import defaultdict
 def solution(id_list, report, k):
     answer = []

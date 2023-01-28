@@ -1,3 +1,5 @@
+# 진수 변환법 인지 q,r = divmod(a,d)
+# -1 로 보정
 def solution(n):
     answer = ''
     li = ["4","1","2"]
