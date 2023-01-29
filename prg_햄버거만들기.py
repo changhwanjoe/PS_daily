@@ -17,15 +17,15 @@ def solution(ingredient):
         else: # 2 or 3인경우
             if len(d) == 0:
                 continue
-            if elm ==2 : 
+            elif elm ==2 : 
                 if d[-1]== 1:
                     d.append(elm)
-                else : # 2 or 3
-                    clear_stack(d)
-            if elm ==3 :
+                else : #2 or 3
+                    d = deque() # clear stack
+            elif elm ==3 :
                 if d[-1] == 2:
                     d.append(elm)
-                else : clear_stack(d)
+                else : d = deque() # clear stack
     return answer
 
 def clear_stack(d):
