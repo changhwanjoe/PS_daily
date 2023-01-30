@@ -1,6 +1,18 @@
 # stack queue --> deque
+def solution2(ingredient): # 모범답안. Stack의 맨위 4개만 보고 1231 일때 pop 시키면 훨씬 쉽다
+    answer = 0
+    stack = []
+    for elm in ingredient:
+        stack.append(elm)
+        if len(stack) >=4:
+            if stack[len(stack)-4:] == [1,2,3,1]: # 이부분 핵심. 
+                for _ in range(4): stack.pop()
+                answer+=1
+    return answer
+    
+
 from collections import deque
-def solution(ingredient):
+def solution(ingredient): # 내 답안. 
     answer = 0
     prev = 0
     d = deque()
