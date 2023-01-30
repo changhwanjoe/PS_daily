@@ -1,14 +1,16 @@
 # 코딩테스트 연습> 해시> 완주하지 못한 선수
-# d.get 함수
+## insight d.get 함수 
+# d.get(x,0): return value, or 0 if x not in d's keys
+# d.items(): return key, value
 
 def solution(participant, completion):
     d = {}
     for x in participant:
-        d[x] = d.get(x,0) + 1 # d.get(x,0): return value, or 0 if x not in d's keys 
+        d[x] = d.get(x,0) + 1  
     for x in completion:
         d[x] -= 1 
     #did not finish
-    dnf = [k for k,v in d.items() if v >0 ] # d.items(): return key, value
+    dnf = [k for k,v in d.items() if v >0 ] 
     answer = dnf[0]
     return answer
 

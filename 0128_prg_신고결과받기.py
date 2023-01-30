@@ -1,4 +1,9 @@
-# 자료구조  &  default dict
+# 자료구조를 먼저 정하고 시작
+## for i in dictionary 로 접근할때 i에 Key 가 return 됨
+## answer[list.index(i)] index로 번지수 접근하는법
+
+#solution
+
 from collections import defaultdict
 def solution(id_list, report, k):
     answer = []
