@@ -1,24 +1,19 @@
 from collections import deque
 
-def dfs_iterative(start_node,graph):
-    discovered = []
-    stack = deque()
-    stack.append(start_node)
-
-    while stack:
-        v = stack.pop()
-        if v not in discovered:
-            discovered.append(v)
-            for w in graph[v]:
-                stack.append(w)
-                
-    return discovered
-
-def dfs_recusrive(v,graph,discovered=[]):
+def dfs_recursive(v, graph,discovered=[]):
     discovered.append(v)
     for w in graph[v]:
-        if w not in discovered:
-            discovered = dfs_recusrive(w,graph,discovered)
+        if not w in discovered:
+            discovered = recursive_dfs(w, graph, discovered)
     return discovered
 
-    
+def dfs_iteration(start_v,graph):
+    discovered =[]
+    stack= [start_v]
+    while stack :
+        v = stack.pop()
+        if v not in discovered:
+            for w in graph[v]:
+                stack.append(w)
+    return discovered
+
