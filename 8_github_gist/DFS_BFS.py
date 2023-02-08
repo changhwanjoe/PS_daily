@@ -1,5 +1,5 @@
 #page325
-
+from collections import deque
 graph = {
     1:[2,3,4],
     2:[5],
@@ -9,13 +9,20 @@ graph = {
     6:[],
     7:[3]}
 
-def recursive_dfs(v, discovered = []): #DFS with recursive
+def dfs(graph,v, visited):
+    visited[v]=True
+    print(v,end=' ')
+    for i in graph[v]:
+        if not visited[i]:
+            dfs(graph,i,visited)
+
+
+def recursive_dfs(v, discovered = []): 
     discovered.append(v)
     for w in graph[v]:
         if w not in discovered:
             discovered = recursive_dfs(w, discovered)
     return discovered
-
 
 def iterative_dfs(start_v): # DFS with stack
     discovered = []
@@ -28,6 +35,15 @@ def iterative_dfs(start_v): # DFS with stack
                 stack.append(w)
     return discovered
 
+def bfs(graph,start,visited):
+    queue = deque([start])    
+    visited[start]=True
+    while queue:
+        v = queue.popleft()
+        for w in graph[v]:
+            if not visited[w]:
+                queue.append(w)
+                visited[w] = True
 
 def iterative_bfs(start_v): #BFS with queue
     discovered  = start_v
@@ -41,4 +57,4 @@ def iterative_bfs(start_v): #BFS with queue
     return discovered
 
 
-print(recursive_dfs(1))
+                
