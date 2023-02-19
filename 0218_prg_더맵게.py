@@ -24,18 +24,18 @@ def solution1(scoville, K): # 효율성 테스트 실패
 
 import heapq
 def solution(scoville,K):
-    count = 0
+    answer = 0
     heapq.heapify(scoville) 
     while True:
-        if len(scoville) == 1:
-            if scoville[0] >=K: return count
-            else : return -1
-        else: 
-            first,second = heapq.heappop(scoville), heapq.heappop(scoville)
-            if first>=K: return count
-            else : heapq.heappush(scoville,first+second*2)
-            count +=1    
-
+        min1 = heapq.heappop(scoville)
+        if min1 >=K : break
+        elif len(scoville) == 0: 
+            answer = -1 
+            break
+        min2 = heapq.heappop(scoville)
+        heapq.heappush(scoville,min1+min2*2)
+        answer +=1 
+    return answer
 scoville, K = [1, 2, 3, 9, 10, 12],	7
 
 print(solution(scoville, K))
