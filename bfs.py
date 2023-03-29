@@ -31,17 +31,6 @@ def bfs(graph,start, visited): # 나동빈 이것이 코테다
                 q.append(w)
                 visited[w]=True
 
-def bfs(start,graph, visited):
-    visited = []
-    stack = deque([start])
-    while stack:
-        v = stack.pop()
-        visited.append(v)
-        for w in graph[v]:
-            if w not in visited:
-                stack.append(w)       
-
-
 def dfs_iterative(start_node,graph): # 파이썬 알고리즘 인터뷰 
     discovered = []
     stack = deque()
