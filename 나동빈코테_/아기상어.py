@@ -20,7 +20,7 @@ for i in range(n):
 dx = [-1,0,1,0]
 dy = [0,1,0,-1]
 
-def bfs():
+def bfs(): # 도달 가능한 모든 위치를 담은 dist return. dist == -1 이면 도달 불가능, 아니라면 거리. 
     dist = [[-1] *n for _ in range(n)]
     q= deque([(now_x,now_y)])
     dist[now_x][now_y]=0
@@ -30,7 +30,46 @@ def bfs():
             nx = x+dx[i]
             ny= y+dy[i]
             if 0<=nx<n and 0<=ny <n:
-                if 
-                if 0<array[nx][ny]<now_size:
+                if dist[nx][ny] == -1 and array[nx][ny]<=now_size:
+                    dist[nx][ny] = dist[x][y] +1
+                    q.append((nx,ny))
+    return dist
+
+def find(dist): # dist 에서 가장 가까운, 먹을수 있는 물고기를 찾음. 
+    x,y = 0,0
+    min_dist = INF
+    for i in range(n):
+        for j in range(n): # 도달 가능하고, 물고기가 존재하며, 현재 물고기보다 크면 안됨. -> 먹을수 있는 물고기
+            if dist[i][j] != -1 and 1 <= array[i][j] and array[i][j]< now_size:
+                if dist[i][j] < min_dist :
+                    x,y  = i,j # 최소물고기 좌표
+                    min_dist = dist[i][j]
+    if min_dist == INF :
+        return None
+    else:
+        return x,y,min_dist
+    
+result = 0
+ate = 0
+
+while True:
+    value = find(bfs())
+    if value == None:
+        print(result)
+        break
+    else:
+        now_x,now_y = value[0],value[1]
+        result += value[2]
+        array[now_x][now_y] = 0
+        ate +=1 
+
+        if ate >= now_size :
+            now_size +=1 
+            ate =0
+            
+
+    
+
+    
 
                  
