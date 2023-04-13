@@ -54,7 +54,7 @@ def dfs_recursive(v,discovered=[]): # 파이썬 알고리즘 인터뷰
 def dfs(graph,v, visited): # 나동빈 이것이 코테다
     visited[v] = True
     print(v,end ='')
-    for i in graph[i]:
+    for i in graph[v]:
         if not visited[i]:
             dfs(graph,i,visited)
-
+    
