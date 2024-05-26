@@ -10,8 +10,8 @@ for _ in range(T):
     S = list(readl())[:-1]
     R = list(map(int,readl().split()))
  
-    right = 10**13+1
-    left = 1
+    right = 10**13 + 1 # 최대 데미지, 용사가 무조건 승리
+    left = 1 # 최소값
     mid = (left + right) //2
  
     while left != right:
