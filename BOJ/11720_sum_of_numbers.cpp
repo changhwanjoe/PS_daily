@@ -1,3 +1,7 @@
+// TIP 
+// string 들어가 있는 numbers 에 대해 
+// ascii 코드는 int 이다. 
+// 아스키 코드를 굳이 형변환 하지 않고 계산하는 방법. ?? -'0' 하면 int 값 나옴. 
 #include <iostream>
 #include <string>
 
