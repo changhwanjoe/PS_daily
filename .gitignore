@@ -4,3 +4,5 @@
 .vscode*
 *.vcxproj*
 *.sln
+*.dSYM
+output/
