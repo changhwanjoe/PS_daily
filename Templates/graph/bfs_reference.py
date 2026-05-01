@@ -1,37 +1,44 @@
+"""
+BFS / DFS 레퍼런스 구현 모음
+- 다양한 출처(알고리즘 인터뷰, 이코테)의 구현을 비교 정리
+"""
 from collections import deque
+
 graph = []
-def bfs(start_v): # 알고리즘인터뷰 원본
-    discovered =[start_v]
-    queue = [start_v]
-    while queue: 
-        v = queue.pop(0)
+
+
+# ===== BFS =====
+
+def bfs_basic(start_v):
+    """알고리즘 인터뷰 원본 (deque 사용으로 최적화)"""
+    discovered = {start_v}          # set 사용: in 연산 O(1)
+    queue = deque([start_v])        # deque: popleft O(1)
+    while queue:
+        v = queue.popleft()
         for w in graph[v]:
             if w not in discovered:
-                discovered.append(w)
+                discovered.add(w)
                 queue.append(w)
+    return discovered
 
-def bfs(start_v): # 알고리즘 인터뷰 deque 변형
-    q = deque([start_v])
-    discovered=[start_v]
-    while q:
-        v = q.popleft()
-        for w in graph[v]:
-            if w not in discovered:
-                discovered.append(w)
-                q.append(w)
 
-def bfs(graph,start, visited): # 나동빈 이것이 코테다
+def bfs_visited(graph, start, visited):
+    """나동빈 「이것이 코딩테스트다」 스타일"""
     q = deque([start])
     visited[start] = True
-    while q :
+    while q:
         v = q.popleft()
-        print(v,end=' ')        
+        print(v, end=' ')
         for w in graph[v]:
             if not visited[w]:
                 q.append(w)
-                visited[w]=True
+                visited[w] = True
 
-def dfs_iterative(start_node,graph): # 파이썬 알고리즘 인터뷰 
+
+# ===== DFS =====
+
+def dfs_iterative(start_node, graph):
+    """스택 기반 DFS (파이썬 알고리즘 인터뷰)"""
     discovered = []
     stack = deque()
     stack.append(start_node)
@@ -41,20 +48,24 @@ def dfs_iterative(start_node,graph): # 파이썬 알고리즘 인터뷰
             discovered.append(v)
             for w in graph[v]:
                 stack.append(w)
-                
     return discovered
 
-def dfs_recursive(v,discovered=[]): # 파이썬 알고리즘 인터뷰
+
+def dfs_recursive(v, discovered=None):
+    """재귀 DFS (파이썬 알고리즘 인터뷰)"""
+    if discovered is None:          # mutable default argument 방지
+        discovered = []
     discovered.append(v)
     for w in graph[v]:
         if w not in discovered:
-            discovered = dfs_recursive(w,discovered)
+            discovered = dfs_recursive(w, discovered)
     return discovered
 
-def dfs(graph,v, visited): # 나동빈 이것이 코테다
+
+def dfs_visited(graph, v, visited):
+    """나동빈 「이것이 코딩테스트다」 스타일"""
     visited[v] = True
-    print(v,end ='')
+    print(v, end=' ')
     for i in graph[v]:
         if not visited[i]:
-            dfs(graph,i,visited)
-    
+            dfs_visited(graph, i, visited)

@@ -17,7 +17,9 @@ def dfs(graph,v, visited):
             dfs(graph,i,visited)
 
 
-def recursive_dfs(v, discovered = []): 
+def recursive_dfs(v, discovered=None):  # [FIX] mutable default argument 방지
+    if discovered is None:
+        discovered = []
     discovered.append(v)
     for w in graph[v]:
         if w not in discovered:
@@ -46,10 +48,10 @@ def bfs(graph,start,visited):
                 visited[w] = True
 
 def iterative_bfs(start_v): #BFS with queue
-    discovered  = start_v
-    queue = [start_v]
+    discovered = [start_v]              # [FIX] start_v → [start_v] (리스트로 초기화)
+    queue = deque([start_v])
     while queue:
-        v = queue.pop(0)
+        v = queue.popleft()             # [FIX] pop(0) O(n) → popleft() O(1)
         for w in graph[v]:
             if w not in discovered:
                 discovered.append(w)

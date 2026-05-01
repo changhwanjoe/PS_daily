@@ -12,9 +12,9 @@ now_x, now_y = 0,0
 
 for i in range(n):
     for j in range(n):
-        if array[n][j] ==9:
-            now_x,now_y = i,j
-            array[n][j] = 0
+        if array[i][j] == 9:        # [FIX] array[n] → array[i] (인덱스 에러 수정)
+            now_x, now_y = i, j
+            array[i][j] = 0
         
 
 dx = [-1,0,1,0]
