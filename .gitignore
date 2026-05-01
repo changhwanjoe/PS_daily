@@ -1,8 +1,34 @@
+# IDE / Editor
 .idea*
 *.xml
 .vs*
 .vscode*
 *.vcxproj*
 *.sln
-*.dSYM
+
+# macOS
+.DS_Store
+*.dSYM/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env
+venv/
+
+# C/C++ build
+*.o
+*.out
+*.exe
 output/
+
+# Java
+*.class
+
+# Temporary
+*.swp
+*.swo
+*~
