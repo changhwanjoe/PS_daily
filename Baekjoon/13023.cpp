@@ -1,24 +1,65 @@
 #include <iostream>
-
 #include <vector>
+
 using namespace std;
 
-static vector<vector<int>> friend_list;
+static vector<vector<int>> A;
 static vector<bool> visited;
-int main(void){
+static bool arrived;
+void DFS(int i, int depth);
+int main(void)
+{
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+
     int N, M;
     cin >> N >> M;
-    friend_list.resize(N);
-    visited.resize(N+1, false);
-    for (int i =0; i<M; i++){
+
+    A.resize(N);
+    visited.resize(N, false);
+
+    for (int i =0; i<M; i++)
+    {
         int a, b;
         cin >> a >> b;
-        friend_list[a].push_back(b);
-        friend_list[b].push_back(a);
-    }   
+        A[a].push_back(b);
+        A[b].push_back(a);
+    }
+    arrived = false;
+
+    for (int i=0; i<N; i++)
+    {
+        DFS(i,1);
+        if (arrived)
+        {
+            break;
+        }
+    }
+    if (arrived)
+    {
+        cout << 1 <<endl;
+    }
+    else 
+    {
+        cout <<0 <<endl;
+    }
 
     return 0;
 }
+
+void DFS(int i, int depth){
+    if (depth >=5 || arrived){
+        arrived = true;
+        return;
+    }
+    visited[i] = true;
+
+    for (const int node : A[i])
+    {
+        if (!visited[node])
+        {
+            DFS(node,depth +1);
+        }
+    }
+    }
